@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 
-const Login = ({navigator}) => {
+const Login = ({navigation}) => {
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -25,7 +25,7 @@ const Login = ({navigator}) => {
       {/* <TextInput placeholder="Seu Email" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/> */}
       <TextInput secureTextEntry={true} placeholder="Senha" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setSenha(text)}/>
 
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Perfil')}>
         <Text style={styles.textButton}>LOGIN</Text>
       </TouchableOpacity>
     </View>

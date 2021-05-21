@@ -9,14 +9,18 @@ import {
   Button
 } from 'react-native';
 
-const Perfil = () => {
+const Perfil = ({navigation}) => {
   return(
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Evento')}>
         <Text>Eventos</Text>
-        <Text>Artistas</Text>
-        <Text>Locais</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text>Artistas</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text>Locais</Text>
+      </TouchableOpacity>        
     </View>
   )
 }

@@ -8,6 +8,8 @@ const Page = createStackNavigator()
 
 import Login from './src/components/Login'
 import PaginaInicial from './src/components/PaginaInicial'
+import Perfil from './src/components/Perfil'
+import AddEvento from './src/components/AddEvento'
 
 const App = () => {
   return (
@@ -23,6 +25,20 @@ const App = () => {
         <Page.Screen 
           name='Login' 
           component={Login} 
+          options={
+           { headerShown:false
+          }}
+        />
+         <Page.Screen 
+          name='Perfil' 
+          component={Perfil} 
+          options={
+           { headerShown:false
+          }}
+        />
+         <Page.Screen 
+          name='Evento' 
+          component={AddEvento} 
           options={
            { headerShown:false
           }}
