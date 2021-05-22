@@ -5,39 +5,74 @@ import {
   TouchableOpacity,
   View,
   Text,
-  TextInput,
-  Button
+  ImageBackground
 } from 'react-native';
 
 const Perfil = ({navigation}) => {
   return(
+    <ImageBackground source={require('../assets/stage-lights.jpg')} style={styles.image}>
     <View style={styles.container}>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text1}>Escolha A Funcionalidade Desejada:</Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+    <Text style={styles.text}></Text>
+      <Text style={styles.text}>Os Melhores Eventos</Text>
       <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Evento')}>
-        <Text>Eventos</Text>
+        <Text style={styles.text}>Eventos</Text>
       </TouchableOpacity>
+      <Text style={styles.text}>Os Melhores Artistas</Text>
       <TouchableOpacity style={styles.button}>
-        <Text>Artistas</Text>
+        <Text style={styles.text}>Artistas</Text>
       </TouchableOpacity>
+      <Text style={styles.text}>Os Melhores Lugares</Text>
       <TouchableOpacity style={styles.button}>
-        <Text>Locais</Text>
+        <Text style={styles.text}>Locais</Text>
+        
       </TouchableOpacity>        
     </View>
+    </ImageBackground>
   )
 }
 const styles = StyleSheet.create({
   container: {
+    
     flex: 1,
-    borderColor: 'blue',
     borderWidth: 1,
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
+text:{
+  color: '#fff',
+  fontWeight: 'bold',
+  fontSize: 20
+},
+
+text1:{
+  color: '#fff',
+  fontWeight: 'bold',
+  fontSize: 25,
+  textAlign: 'center'
+},
+
+image:{
+  width:'100%',
+  height:'100%'
+},
+
   button: {
-    width: 200,
-    backgroundColor: '#00cc99',
+    width: '70%',
+    marginVertical: 20,
+    height: 50,
+    backgroundColor: '#00cc9980',
     padding: 5,
-    borderRadius: 5,
+    borderRadius: 25,
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',

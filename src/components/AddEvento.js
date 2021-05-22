@@ -8,7 +8,8 @@ import {
   View,
   Text,
   TextInput,
-  Button
+  Button,
+  ImageBackground
 } from 'react-native';
 
 const AddEvento = ({navigation}) => {
@@ -17,6 +18,7 @@ const AddEvento = ({navigation}) => {
   const [dataEvento, setDataEvento] = useState(false);
   const [hrInicioEvento, setHrInicioEvento] = useState(false);
   const [hrFimEvento, setHrFimEvento] = useState(false);
+  // const [hora, setHora] = useState("")
 
   // Data do Evento
 
@@ -45,6 +47,8 @@ const AddEvento = ({navigation}) => {
 
   const handleTimeInicioConfirm = (timeinicio) => {
     console.warn("A date has been picked: ", timeinicio);
+    // setHora(timeinicio)
+    // console.log(hora)
     hideTimePicker();
   };
 
@@ -81,10 +85,18 @@ const AddEvento = ({navigation}) => {
 
   return(
     <>
+    <ImageBackground source={require('../assets/evento.jpg')} style={styles.image}>
       <View style={styles.container}>
         <Text style={styles.header}>Crie seu Evento</Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        
         <TextInput placeholder="Nome do Evento" style={styles.input} value={nomeEvento} onChangeText={item => {setNomeEvento(item)}} />
-
+        <Text style={styles.text}></Text>
         <Button title="data do evento" onPress={showDatePicker} />
         <DateTimePickerModal
           isVisible={dataEvento}
@@ -92,7 +104,7 @@ const AddEvento = ({navigation}) => {
           onConfirm={handleDateConfirm}
           onCancel={hideDatePicker}
         />
-
+<Text style={styles.text}></Text>
         <Button title="hora de início" onPress={showTimeInicioPicker} />
         <DateTimePickerModal
           isVisible={hrInicioEvento}
@@ -100,7 +112,7 @@ const AddEvento = ({navigation}) => {
           onConfirm={handleTimeInicioConfirm}
           onCancel={hideTimeInicioPicker}
         />
-
+<Text></Text>
         <Button title="hora de término" onPress={showTimeFimPicker} />
         <DateTimePickerModal
           isVisible={hrFimEvento}
@@ -108,9 +120,16 @@ const AddEvento = ({navigation}) => {
           onConfirm={handleTimeFimConfirm}
           onCancel={hideTimeFimPicker}
         />
-
+<Text ></Text>
         <TextInput placeholder="Valor do Evento" type="number" style={styles.input} value={valorEvento} onChangeText={item => {setValorEvento(item)}} />
-
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
         <View>
           <TouchableOpacity style={styles.button} onPress={createEvento}>
             <Text style={styles.buttonText}>Cadastrar Evento</Text>
@@ -118,33 +137,49 @@ const AddEvento = ({navigation}) => {
         </View>
         
       </View>
+      </ImageBackground>
     </>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderColor: 'blue',
     borderWidth: 1,
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  header:{
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 25,
+    textAlign: 'center'
+  },
+
+  image:{
+    width: "100%",
+    height:"100%"
+  },
+
   input: {
     height: 40,
     width: 200,
     borderColor: 'gray',
     borderWidth: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    borderRadius: 25,
   },
   button: {
-    width: 200,
+    width: 350,
+    marginVertical: 20,
+    height: 50,
     backgroundColor: '#00cc99',
     padding: 5,
-    borderRadius: 5,
+    borderRadius: 25,
     alignContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 })
 
