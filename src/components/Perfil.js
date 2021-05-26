@@ -22,19 +22,26 @@ const Perfil = ({navigation}) => {
     <Text style={styles.text}></Text>
     <Text style={styles.text}></Text>
     <Text style={styles.text}></Text>
+
       <Text style={styles.text}>Os Melhores Eventos</Text>
       <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Evento')}>
         <Text style={styles.text}>Eventos</Text>
       </TouchableOpacity>
+
       <Text style={styles.text}>Os Melhores Artistas</Text>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.text}>Artistas</Text>
       </TouchableOpacity>
+
       <Text style={styles.text}>Os Melhores Lugares</Text>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.text}>Locais</Text>
-        
-      </TouchableOpacity>        
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('VerEvento')}>
+        <Text style={styles.text}>Ver Eventos</Text>
+      </TouchableOpacity>
+      
     </View>
     </ImageBackground>
   )

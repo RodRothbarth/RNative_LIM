@@ -12,7 +12,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const AddEvento = ({navigation}) => {
+const VerEvento = ({navigation}) => {
   const [nomeEvento, setNomeEvento] = useState("");
   const [valorEvento, setValorEvento] = useState("");
 
@@ -83,11 +83,11 @@ const AddEvento = ({navigation}) => {
   }
 
 
-  const createEvento = async () => {
+  const mostrarEvento = async () => {
 
     if (nomeEvento && dataEvento && mostrarHrInicioEvento && mostrarHoraFimEvento && valorEvento){
       try{
-        const response = await api.post('/Evento', {"nome": nomeEvento, "dtevento": dataEvento, "hrinicio": mostrarHrInicioEvento, "hrfim": mostrarHoraFimEvento, "valor": valorEvento});
+        const response = await api.get('/Evento', {"nome": nomeEvento, "dtevento": dataEvento, "hrinicio": mostrarHrInicioEvento, "hrfim": mostrarHoraFimEvento, "valor": valorEvento});
         console.log(JSON.stringify(response.data));
         // navigation.navigate('Home');
       } catch (error) {
@@ -102,7 +102,7 @@ const AddEvento = ({navigation}) => {
     <>  
       <ImageBackground source={require('../assets/evento.jpg')} style={styles.image}>
         <View style={styles.container}>
-          <Text style={styles.header}>Crie seu Evento</Text>
+          <Text style={styles.header}>{nomeEvento}</Text>
           <Text></Text>
           <Text></Text>
           <Text></Text>
@@ -110,47 +110,26 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
           <Text></Text>
 
-          <TextInput placeholder="Nome do Evento" style={styles.inputNomeEvento} value={nomeEvento} onChangeText={item => {setNomeEvento(item)}} />
+          <TextInput style={styles.inputNomeEvento} value={nomeEvento} onChangeText={item => {setNomeEvento(item)}} />
           <Text></Text>
       
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Data" value={dataEvento} editable={false}></TextInput>
-            <Icon style={styles.icon} name="calendar-alt" onPress={showDatePicker} size={30}></Icon>
-
-            <DateTimePickerModal
-              isVisible={mostrarDataEvento}
-              mode="date"
-              onConfirm={handleDateConfirm}
-              onCancel={hideDatePicker}
-            />
+            <TextInput style={styles.input} value={dataEvento} editable={false}></TextInput>
           </View>
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Inicial" value={horaInicioEvento} editable={false}></TextInput>
-            <Icon style={styles.icon} name="clock" onPress={showTimeInicioPicker} size={30}></Icon>
-
-            <DateTimePickerModal
-              isVisible={mostrarHrInicioEvento}
-              mode="time"
-              onConfirm={handleTimeInicioConfirm}
-              onCancel={hideTimeInicioPicker}
-            />
+            <TextInput style={styles.input}  value={horaInicioEvento} editable={false}></TextInput>
           </View>
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Final" value={horaFimEvento} editable={false}></TextInput>
-            <Icon style={styles.icon} name="clock" onPress={showTimeFimPicker} size={30}></Icon>
-            <DateTimePickerModal
-              isVisible={mostrarHoraFimEvento}
-              mode="time"
-              onConfirm={handleTimeFimConfirm}
-              onCancel={hideTimeFimPicker}
-            />
+            <TextInput style={styles.input} value={horaFimEvento} editable={false}></TextInput>
           </View>
           <Text ></Text>
-          <MoneyInput style={styles.inputValor} onTextChange={text => console.log(text)} />
+
+          <TextInput style={styles.input} value={valorEvento} editable={false}></TextInput>
+          
           <Text></Text>
           <Text></Text>
           <Text></Text>
@@ -160,8 +139,8 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
           <Text></Text>
           <View>
-            <TouchableOpacity style={styles.button} onPress={createEvento}>
-              <Text style={styles.buttonText}>Cadastrar Evento</Text>
+            <TouchableOpacity style={styles.button} onPress={mostrarEvento}>
+              <Text style={styles.buttonText}>Candidatar-se</Text>
             </TouchableOpacity>
           </View>
           
@@ -226,7 +205,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#fff',
     borderRadius: 25,
-    marginRight: 40,
+    // marginRight: 40,
   },
 
   icon: {
@@ -247,4 +226,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AddEvento;
+export default VerEvento;
