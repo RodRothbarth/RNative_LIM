@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import MoneyInput from 'react-native-money-input';
+import { TextInputMask } from 'react-native-masked-text';
 import api from '../services/axios';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {
@@ -150,7 +150,26 @@ const AddEvento = ({navigation}) => {
             />
           </View>
           <Text ></Text>
-          <MoneyInput style={styles.inputValor} onTextChange={text => console.log(text)} />
+
+          <TextInputMask
+            style={styles.inputValor}
+            placeholder="Valor"
+            type={'money'}
+            options={{
+              precision: 2,
+              separator: ',',
+              delimiter: '.',
+              unit: 'R$',
+              suffixUnit: ''
+            }}
+            value={valorEvento.advanced}
+            onChangeText={text => {
+              setValorEvento({
+                advanced: text
+              })
+            }}
+          />
+          
           <Text></Text>
           <Text></Text>
           <Text></Text>
@@ -159,6 +178,7 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
           <Text></Text>
           <Text></Text>
+          
           <View>
             <TouchableOpacity style={styles.button} onPress={createEvento}>
               <Text style={styles.buttonText}>Cadastrar Evento</Text>
