@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import MoneyInput from 'react-native-money-input';
 import api from '../services/axios';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {
   StyleSheet,
   TouchableOpacity,
