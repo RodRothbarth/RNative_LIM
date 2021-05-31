@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground, StatusBar, FlatList } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
 
 
 const ListaEventos = () => {
 
-  const [nomeEvento, setNomeEvento] = useState('Night-bar');
-  const [dataEvento, setDataEvento] = useState('04/06/2021');
-  const [hrInicioEvento, setHrInicioEvento] = useState('20:00');
-  const [hrFimEvento, setHrFimEvento] = useState('00:00');
-  const [valorEvento, setValorEvento] = useState('20.00');
+  // const [nomeEvento, setNomeEvento] = useState('Night-bar');
+  // const [dataEvento, setDataEvento] = useState('04/06/2021');
+  // const [hrInicioEvento, setHrInicioEvento] = useState('20:00');
+  // const [hrFimEvento, setHrFimEvento] = useState('00:00');
+  // const [valorEvento, setValorEvento] = useState('20.00');
+  const [eventos, setState] = useState("")
+
+
+  componentWillMount =() => {
+    get("http://localhost:3333/eventos")
+    .then(response => response.json())
+    .then(responseJson => {
+      this.setState(eventos = responseJson)
+    });
+  }
 
   return (
       <View style={styles.container}>
@@ -17,29 +27,30 @@ const ListaEventos = () => {
         <Text style={styles.tituloPagina}>Eventos Disponíveis</Text>
 
         <FlatList
-          data={[1, 2, 3]}
-          renderItem={() => {
+          data={eventos}
+          keyExtractor={(eventos)=> eventos.idevento}
+          renderItem={({item}) => {
             return (
               <View style={styles.eventoContainer}>
                   <Text style={styles.dotLeft}></Text>
 
                   <View style={styles.vEsquerda}>
   
-                  <Text style={styles.tituloEvento}>{nomeEvento}</Text>
+                  <Text style={styles.tituloEvento}>{eventos.nome}</Text>
 
                   <View >
-                    <Text style={styles.dataEvento}>{dataEvento}</Text>
+                    <Text style={styles.dataEvento}>{eventos.dataEvento}</Text>
                   </View>
                   
                   <View>
-                    <Text style={styles.horarios}>{hrInicioEvento} à {hrFimEvento}</Text>
+                    <Text style={styles.horarios}>{eventos.hrInicioEvento} à {hrFimEvento}</Text>
                   </View>
             
                   </View>
 
                   <View style={styles.vDireita}>
                   <Text style={styles.cifrao}>Valor</Text>
-                  <Text style={styles.valorEvento}>{valorEvento}</Text>
+                  <Text style={styles.valorEvento}>{eventos.valorEvento}</Text>
 
                   <Text style={styles.dotRight}></Text>
                 </View>
