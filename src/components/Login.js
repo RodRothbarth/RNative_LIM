@@ -1,11 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import AuthContext from '../contexts/auth';
 
-const Login = ({navigation}) => {
+const SignIn = ({navigation}) => {
+  const {signed, Login} = useContext(AuthContext);
+
+  console.log(signed);
+  console.log(user);
+
+
+  function handleLogin() {
+    Login();
+  }
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  
 
   const cadastro = () => {
     alert(senha);
@@ -25,7 +36,8 @@ const Login = ({navigation}) => {
       {/* <TextInput placeholder="Seu Email" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/> */}
       <TextInput secureTextEntry={true} placeholder="Senha" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setSenha(text)}/>
 
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Perfil')}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}> {/* ()=> navigation.navigate('Perfil') */}
+      
         <Text style={styles.textButton}>LOGIN</Text>
       </TouchableOpacity>
     </View>
@@ -71,4 +83,4 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
 });
-export default Login;
+export default SignIn;
