@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
+import api from '../services/axios'
 
 
 const ListaEventos = () => {
@@ -9,17 +11,21 @@ const ListaEventos = () => {
   // const [hrInicioEvento, setHrInicioEvento] = useState('20:00');
   // const [hrFimEvento, setHrFimEvento] = useState('00:00');
   // const [valorEvento, setValorEvento] = useState('20.00');
-  const [eventos, setState] = useState("")
+  const [eventos, setEvento] = useState([])
 
-
-  componentWillMount =() => {
-    get("http://localhost:3333/eventos")
-    .then(response => response.json())
-    .then(responseJson => {
-      this.setState(eventos = responseJson)
-    });
+  useEffect (()=> {getEventos()}, [])
+  
+  const getEventos = async () => {
+    try{
+      const response = await api.get('/eventos');
+    console.log(JSON.stringify(response.data));
+    setEvento(response.data);
+    console.log(eventos[0].idevento)
+  } catch (error) {
+    console.log("DEU RUIM" + error);
   }
-
+  }
+ 
   return (
       <View style={styles.container}>
         <StatusBar hidden />
@@ -28,7 +34,7 @@ const ListaEventos = () => {
 
         <FlatList
           data={eventos}
-          keyExtractor={(eventos)=> eventos.idevento}
+          keyExtractor={(item)=> item.idevento}
           renderItem={({item}) => {
             return (
               <View style={styles.eventoContainer}>
@@ -36,21 +42,21 @@ const ListaEventos = () => {
 
                   <View style={styles.vEsquerda}>
   
-                  <Text style={styles.tituloEvento}>{eventos.nome}</Text>
+                  <Text style={styles.tituloEvento}>{item.nomedoevento}</Text>
 
                   <View >
-                    <Text style={styles.dataEvento}>{eventos.dataEvento}</Text>
+                    <Text style={styles.dataEvento}>{item.dtevento}</Text>
                   </View>
                   
                   <View>
-                    <Text style={styles.horarios}>{eventos.hrInicioEvento} à {hrFimEvento}</Text>
+                    <Text style={styles.horarios}>{item.hrinicioevento} à {item.hrfimEvento}</Text>
                   </View>
             
                   </View>
 
                   <View style={styles.vDireita}>
                   <Text style={styles.cifrao}>Valor</Text>
-                  <Text style={styles.valorEvento}>{eventos.valorEvento}</Text>
+                  <Text style={styles.valorEvento}>{item.valorevento}</Text>
 
                   <Text style={styles.dotRight}></Text>
                 </View>
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
   },
   tituloPagina : {
     fontSize : 30,
-    color : '#fff',
+    color : '#000',
     marginBottom : 30,
   },
   eventoContainer : {
