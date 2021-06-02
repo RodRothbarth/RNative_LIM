@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity} from 'react-native';
 import api from '../services/axios';
 
-const ListaEventosLocal = (navigation) => {
+const ListaEventosLocal = ({navigation}) => {
 
   // const [nomeEvento, setNomeEvento] = useState('Night-bar');
   // const [dataEvento, setDataEvento] = useState('04/06/2021');

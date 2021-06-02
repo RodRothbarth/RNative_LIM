@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   tituloPagina : {
     fontSize : 30,
-    color : '#000',
+    color : '#fff',
     marginBottom : 30,
   },
   eventoContainer : {
