@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
-import api from '../services/axios'
+import { StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity} from 'react-native';
+import api from '../services/axios';
 
-
-const ListaEventos = () => {
+const ListaEventosBanda = ({navigation}) => {
 
   // const [nomeEvento, setNomeEvento] = useState('Night-bar');
   // const [dataEvento, setDataEvento] = useState('04/06/2021');
@@ -18,30 +17,31 @@ const ListaEventos = () => {
   const getEventos = async () => {
     try{
       const response = await api.get('/eventos');
-    console.log(JSON.stringify(response.data));
-    setEvento(response.data);
-    console.log(eventos[0].idevento)
-  } catch (error) {
-    console.log("DEU RUIM" + error);
-  }
+      console.log(JSON.stringify(response.data));
+      setEvento(response.data);
+      console.log(eventos[0].idevento)
+    }catch (error) {
+      console.log("DEU RUIM" + error);
+    }
   }
  
   return (
-      <View style={styles.container}>
-        <StatusBar hidden />
+    <View style={styles.container}>
+      <StatusBar hidden />
 
-        <Text style={styles.tituloPagina}>Eventos Disponíveis</Text>
+      <Text style={styles.tituloPagina}>Eventos Disponíveis</Text>
 
-        <FlatList
-          data={eventos}
-          keyExtractor={(item)=> item.idevento}
-          renderItem={({item}) => {
-            return (
+      <FlatList
+        data={eventos}
+        keyExtractor={(item)=> item.idevento}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity onPress={()=> navigation.navigate('Candidatarse')}>
               <View style={styles.eventoContainer}>
-                  <Text style={styles.dotLeft}></Text>
+                <Text style={styles.dotLeft}></Text>
 
-                  <View style={styles.vEsquerda}>
-  
+                <View style={styles.vEsquerda}>
+
                   <Text style={styles.tituloEvento}>{item.nomedoevento}</Text>
 
                   <View >
@@ -49,22 +49,22 @@ const ListaEventos = () => {
                   </View>
                   
                   <View>
-                    <Text style={styles.horarios}>{item.hrinicioevento} à {item.hrfimEvento}</Text>
+                    <Text style={styles.horarios}>{item.hrinicioevento} à {item.hrfimevento}</Text>
                   </View>
             
-                  </View>
+                </View>
 
-                  <View style={styles.vDireita}>
+                <View style={styles.vDireita}>
                   <Text style={styles.cifrao}>Valor</Text>
                   <Text style={styles.valorEvento}>{item.valorevento}</Text>
-
                   <Text style={styles.dotRight}></Text>
                 </View>
               </View>
-            )
-          }}
-        />
-      </View>
+            </TouchableOpacity>
+          )
+        }}
+      />
+    </View>
   );
 }
 
@@ -151,4 +151,4 @@ const styles = StyleSheet.create({
     borderRadius : 25
   }
 });
-export default ListaEventos;
+export default ListaEventosBanda;

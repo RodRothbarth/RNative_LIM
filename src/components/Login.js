@@ -25,8 +25,14 @@ const Login = ({navigation}) => {
       {/* <TextInput placeholder="Seu Email" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/> */}
       <TextInput secureTextEntry={true} placeholder="Senha" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setSenha(text)}/>
 
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Perfil')}>
-        <Text style={styles.textButton}>LOGIN</Text>
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilBanda')}>
+        <Text style={styles.textButton}>LOGIN BANDA</Text>
+      </TouchableOpacity>
+
+      <Text></Text>
+      {/* Criado somente para acessar as páginas como Dono de Local */}
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilLocal')}>
+        <Text style={styles.textButton}>LOGIN ESTABELECIMENTO</Text>
       </TouchableOpacity>
     </View>
   );

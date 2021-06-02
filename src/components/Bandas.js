@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import api from '../services/axios';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground, StatusBar, FlatList } from 'react-native';
 
-
-const VerCandidatos = () => {
+const ListaBandas = ({navigation}) => {
 
   const [banda, setBanda] = useState([]);
 
@@ -68,4 +67,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default VerCandidatos;
+export default ListaBandas;
