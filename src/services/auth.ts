@@ -6,7 +6,7 @@ interface Response {
   };
 }
 
-export function Login(): Promise<Response> {
+export function signIn(): Promise<Response> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({

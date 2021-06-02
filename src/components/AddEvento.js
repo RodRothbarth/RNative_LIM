@@ -153,7 +153,7 @@ const AddEvento = ({navigation}) => {
 
           <TextInputMask
             style={styles.inputValor}
-            placeholder="Valor"
+            placeholder="R$ Valor"
             type={'money'}
             options={{
               precision: 2,
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 200,
     textAlign: 'center',
-    color: '#fff',
+    color: '#000',
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 150,
     textAlign: 'center',
-    color: '#fff',
+    color: '#000',
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
   },
 
   icon: {
+    color: '#fff',
     paddingLeft: 10,
     textAlign: 'center',
   },

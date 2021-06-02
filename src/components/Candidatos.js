@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground, StatusBar, FlatList } from 'react-native';
 
 
-const ListaEventos = () => {
+const VerCandidatos = () => {
 
   const [nomeEvento, setNomeEvento] = useState('Night-bar');
   const [dataEvento, setDataEvento] = useState('04/06/2021');
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
     borderRadius : 25
   }
 });
-export default ListaEventos;
+export default VerCandidatos;

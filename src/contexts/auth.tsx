@@ -4,7 +4,7 @@ import * as auth from '../services/auth';
 interface AuthContextData {
   signed: boolean;
   user: object | null;
-  Login(): Promise<void>;
+  signIn(): Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -12,13 +12,13 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState<object | null>(null);
 
-  async function Login() {
-    const response = await auth.Login();
+  async function signIn() {
+    const response = await auth.signIn();
 
     setUser(response.user)
   }
   return (
-    <AuthContext.provider value={{signed: !!user, user, Login}}>
+    <AuthContext.provider value={{signed: !!user, user, signIn: signIn}}>
       {children}
     </AuthContext.provider>
   );

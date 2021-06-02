@@ -8,39 +8,24 @@ import {
   ImageBackground
 } from 'react-native';
 
-const Perfil = ({navigation}) => {
+const PerfilBanda = ({navigation}) => {
   return(
     <ImageBackground source={require('../assets/stage-lights.jpg')} style={styles.image}>
     <View style={styles.container}>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text1}>Escolha A Funcionalidade Desejada:</Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
-    <Text style={styles.text}></Text>
 
       <Text style={styles.text}>Os Melhores Eventos</Text>
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Evento')}>
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('ListaEventos')}>
         <Text style={styles.text}>Eventos</Text>
       </TouchableOpacity>
 
-      <Text style={styles.text}>Os Melhores Artistas</Text>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text}>Artistas</Text>
-      </TouchableOpacity>
-
       <Text style={styles.text}>Os Melhores Lugares</Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('ListaEstabelecimentos')}>
         <Text style={styles.text}>Locais</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('VerEvento')}>
+      {/* <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('VerEvento')}>
         <Text style={styles.text}>Ver Eventos</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       
     </View>
     </ImageBackground>
@@ -86,4 +71,4 @@ image:{
   },
 })
 
-export default Perfil;
+export default PerfilBanda;

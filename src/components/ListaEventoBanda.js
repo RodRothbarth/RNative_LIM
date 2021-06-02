@@ -1,53 +1,70 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground, StatusBar, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity} from 'react-native';
+import api from '../services/axios';
 
+const ListaEventos = ({navigation}) => {
 
-const ListaEventos = () => {
+  // const [nomeEvento, setNomeEvento] = useState('Night-bar');
+  // const [dataEvento, setDataEvento] = useState('04/06/2021');
+  // const [hrInicioEvento, setHrInicioEvento] = useState('20:00');
+  // const [hrFimEvento, setHrFimEvento] = useState('00:00');
+  // const [valorEvento, setValorEvento] = useState('20.00');
+  const [eventos, setEvento] = useState([])
 
-  const [nomeEvento, setNomeEvento] = useState('Night-bar');
-  const [dataEvento, setDataEvento] = useState('04/06/2021');
-  const [hrInicioEvento, setHrInicioEvento] = useState('20:00');
-  const [hrFimEvento, setHrFimEvento] = useState('00:00');
-  const [valorEvento, setValorEvento] = useState('20.00');
-
-  return (
-      <View style={styles.container}>
-        <StatusBar hidden />
-
-        <Text style={styles.tituloPagina}>Eventos Disponíveis</Text>
-
-        <FlatList
-          data={[1, 2, 3]}
-          renderItem={() => {
-            return (
-              <View style={styles.eventoContainer}>
-                  <Text style={styles.dotLeft}></Text>
-
-                  <View style={styles.vEsquerda}>
+  useEffect (()=> {getEventos()}, [])
   
-                  <Text style={styles.tituloEvento}>{nomeEvento}</Text>
+  const getEventos = async () => {
+    try{
+      const response = await api.get('/eventos');
+      console.log(JSON.stringify(response.data));
+      setEvento(response.data);
+      console.log(eventos[0].idevento)
+    }catch (error) {
+      console.log("DEU RUIM" + error);
+    }
+  }
+ 
+  return (
+    <View style={styles.container}>
+      <StatusBar hidden />
+
+      <Text style={styles.tituloPagina}>Eventos Disponíveis</Text>
+
+      <FlatList
+        data={eventos}
+        keyExtractor={(item)=> item.idevento}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity onPress={()=> navigation.navigate('Candidatarse')}>
+              <View style={styles.eventoContainer}>
+                <Text style={styles.dotLeft}></Text>
+
+                <View style={styles.vEsquerda}>
+
+                  <Text style={styles.tituloEvento}>{item.nomedoevento}</Text>
 
                   <View >
-                    <Text style={styles.dataEvento}>{dataEvento}</Text>
+                    <Text style={styles.dataEvento}>{item.dtevento}</Text>
                   </View>
                   
                   <View>
-                    <Text style={styles.horarios}>{hrInicioEvento} à {hrFimEvento}</Text>
+                    <Text style={styles.horarios}>{item.hrinicioevento} à {item.hrfimevento}</Text>
                   </View>
             
-                  </View>
+                </View>
 
-                  <View style={styles.vDireita}>
+                <View style={styles.vDireita}>
                   <Text style={styles.cifrao}>Valor</Text>
-                  <Text style={styles.valorEvento}>{valorEvento}</Text>
-
+                  <Text style={styles.valorEvento}>{item.valorevento}</Text>
                   <Text style={styles.dotRight}></Text>
                 </View>
               </View>
-            )
-          }}
-        />
-      </View>
+            </TouchableOpacity>
+          )
+        }}
+      />
+    </View>
   );
 }
 
@@ -62,7 +79,7 @@ const styles = StyleSheet.create({
   },
   tituloPagina : {
     fontSize : 30,
-    color : '#fff',
+    color : '#000',
     marginBottom : 30,
   },
   eventoContainer : {
