@@ -252,6 +252,7 @@ const styles = StyleSheet.create({
   icon: {
     paddingLeft: 10,
     textAlign: 'center',
+    color: '#fff',
   },
 
   button: {
