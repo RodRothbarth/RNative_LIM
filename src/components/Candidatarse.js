@@ -18,6 +18,18 @@ const Candidatarse = ({navigation}) => {
       console.log("DEU RUIM" + error);
     }
   }
+
+  const candidatar = async () => { // Esta função está errada, tem q mandar as informações da banda logada para a pagina Candidatos
+    try{
+      const response = await api.post('/eventos'); // mudar endpoint
+      console.log(JSON.stringify(response.data));
+      setEvento(response.data);
+      console.log(eventos[0].idevento)
+    }catch (error) {
+      console.log("DEU RUIM" + error);
+    }
+  }
+
   return (
     <ImageBackground source={require('../assets/evento.jpg')} style={styles.image}>
       <View style={styles.container}>
@@ -63,7 +75,7 @@ const Candidatarse = ({navigation}) => {
         />
         <View>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Candidatar-se</Text>
+            <Text style={styles.buttonText} onPress={candidatar}>Candidatar-se</Text>
           </TouchableOpacity>
         </View>
 

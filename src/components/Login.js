@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 
 const Login = ({navigation}) => {
@@ -6,16 +7,25 @@ const Login = ({navigation}) => {
   const [email, setEmail] = useState(null);
   const [senha, setSenha] = useState(null);
 
-  let dados = {
-    username: email,
-    password: senha
+  // const dados = {
+  //   email: email,
+  //   senha: senha
+  // }
+
+  useEffect (()=> {getUsuarios()}, []);
+
+  const getUsuarios = async () => {
+    try{
+      const response = await api.get('/usuario'); // mudar endpoint
+      console.log(JSON.stringify(response.data));
+      setEmail(response.data);
+      setSenha(response.data);
+      console.log(email[0].idusuario)
+      console.log(senha[0].idusuario)
+    }catch (error) {
+      console.log("DEU RUIM" + error);
+    }
   }
-
-  
-
-  
-    
-  
 
   return (
     <View style={styles.container}>
@@ -29,15 +39,19 @@ const Login = ({navigation}) => {
       {/* <TextInput placeholder="Seu Email" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/> */}
       <TextInput secureTextEntry={true} placeholder="Senha" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setSenha(text)}/>
 
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilBanda')}>
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilLocal')}>
+        <Text style={styles.textButton}>LOGIN</Text>
+      </TouchableOpacity>
+
+      {/* <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilBanda')}>
         <Text style={styles.textButton}>LOGIN BANDA</Text>
       </TouchableOpacity>
 
       <Text></Text>
-      {/* Criado somente para acessar as páginas como Dono de Local */}
+      Criado somente para acessar as páginas como Dono de Local
       <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilLocal')}>
         <Text style={styles.textButton}>LOGIN ESTABELECIMENTO</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
