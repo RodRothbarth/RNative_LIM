@@ -20,7 +20,7 @@ const PerfilBanda = ({navigation}) => {
 
       <Text style={styles.text}>Os Melhores Lugares</Text>
       <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('ListaEstabelecimentos')}>
-        <Text style={styles.text}>Locais</Text>
+        <Text style={styles.text}>Estabelecimentos</Text>
       </TouchableOpacity>
       
     </View>

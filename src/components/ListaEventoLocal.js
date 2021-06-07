@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity, ImageBackground} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import api from '../services/axios';
 
 const ListaEventosLocal = ({navigation}) => {
@@ -13,10 +14,23 @@ const ListaEventosLocal = ({navigation}) => {
   const [eventos, setEvento] = useState([]);
 
   useEffect (()=> {getEventos()}, []);
-  
+
   const getEventos = async () => {
     try{
-      const response = await api.get('/eventos');
+      const response = await api.get('/eventos'); // mudar endpoint
+      console.log(JSON.stringify(response.data));
+      setEvento(response.data);
+      console.log(eventos[0].idevento)
+    }catch (error) {
+      console.log("DEU RUIM" + error);
+    }
+  }
+
+  useEffect (()=> {deleteEvento()}, []);
+
+  const deleteEvento = async () => {
+    try{
+      const response = await api.delete('/eventos:id'); // mudar endpoint
       console.log(JSON.stringify(response.data));
       setEvento(response.data);
       console.log(eventos[0].idevento)
@@ -26,45 +40,56 @@ const ListaEventosLocal = ({navigation}) => {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar hidden />
 
-      <Text style={styles.tituloPagina}>Meus Eventos</Text>
+      <View style={styles.container}>
+        <StatusBar hidden />
 
-      <FlatList
-        data={eventos}
-        keyExtractor={(item)=> item.idevento}
-        renderItem={({item}) => {
-          return (
-            <TouchableOpacity onPress={()=> navigation.navigate('Candidatos')}>
-              <View style={styles.eventoContainer}>
+        <Text style={styles.tituloPagina}>Meus Eventos</Text>
 
-                <Text style={styles.dotLeft}></Text>
+        <FlatList
+          data={eventos}
+          keyExtractor={(item)=> item.idevento}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity onPress={()=> navigation.navigate('Candidatos')}>
+                <View style={styles.eventoContainer}>
 
-                <View style={styles.vEsquerda}>
+                  <Text style={styles.dotLeft}></Text>
 
-                  <Text style={styles.tituloEvento}>{item.nomedoevento}</Text>
+                  <View style={styles.vEsquerda}>
 
-                  <View >
-                    <Text style={styles.dataEvento}>{item.dtevento}</Text>
+                    <Text style={styles.tituloEvento}>{item.nomedoevento}</Text>
+
+                    <View >
+                      <Text style={styles.dataEvento}>{item.dtevento}</Text>
+                    </View>
+                  
+                    <View>
+                      <Text style={styles.horarios}>{item.hrinicioevento} à {item.hrfimEvento}</Text>
+                    </View>
+
+                    <View style={styles.icone}>
+                      <View>
+                        <Icon name="trash" style={styles.iconTrash} onPress={deleteEvento} size={30} color="#fff" />
+                      </View>
+
+                      <View>
+                        <Icon name="edit" style={styles.iconUpdate} size={30} color="#000" onPress={()=> navigation.navigate('Update')} />
+                      </View>
+                    </View>
+            
                   </View>
-                
-                  <View>
-                    <Text style={styles.horarios}>{item.hrinicioevento} à {item.hrfimEvento}</Text>
+                    <View style={styles.vDireita}>
+                    <Text style={styles.cifrao}>Valor</Text>
+                    <Text style={styles.valorEvento}>{item.valorevento}</Text>
+                    <Text style={styles.dotRight}></Text>
                   </View>
-          
                 </View>
-                  <View style={styles.vDireita}>
-                  <Text style={styles.cifrao}>Valor</Text>
-                  <Text style={styles.valorEvento}>{item.valorevento}</Text>
-                  <Text style={styles.dotRight}></Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          )
-        }}
-      />
-    </View>
+              </TouchableOpacity>
+            )
+          }}
+        />
+      </View>
   );
 }
 
@@ -81,6 +106,24 @@ const styles = StyleSheet.create({
     fontSize : 30,
     color : '#fff',
     marginBottom : 30,
+  },
+  icone: {
+    // marginRight: 5,
+    // marginTop: 10,
+    justifyContent: 'center',
+    flexDirection : 'row',
+  },
+  iconTrash: {
+    marginTop: 10,
+    marginRight: 30,
+  },
+  iconUpdate: {
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  image:{
+    width:'100%',
+    height:'100%'
   },
   eventoContainer : {
     color : '#000',

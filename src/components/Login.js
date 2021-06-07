@@ -3,15 +3,19 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar }
 
 const Login = ({navigation}) => {
 
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState(null);
+  const [senha, setSenha] = useState(null);
 
-  const cadastro = () => {
-    alert(senha);
-    alert(email);
-    alert(nome);
+  let dados = {
+    username: email,
+    password: senha
   }
+
+  
+
+  
+    
+  
 
   return (
     <View style={styles.container}>

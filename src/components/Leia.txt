@@ -1,0 +1,15 @@
+Candidatarse:
+	-Puxar somente dados do evento clicado
+	-Criar funcao de se candidatar
+
+Estabelecimentos:
+	-Clicar no estabelecimento para ir a pagina de avaliacao para avaliar somente o estabelecimento em que foi clicado
+
+Bandas:
+	-Fazer a mesma coisa como em Estabelecimentos
+
+Candidatos:
+	Puxar informacoes dos candidatos
+
+Login:
+	-Deixar somente um botão de Login

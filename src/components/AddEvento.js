@@ -89,7 +89,7 @@ const AddEvento = ({navigation}) => {
       try{
         const response = await api.post('/Evento', {"nome": nomeEvento, "dtevento": dataEvento, "hrinicio": mostrarHrInicioEvento, "hrfim": mostrarHoraFimEvento, "valor": valorEvento});
         console.log(JSON.stringify(response.data));
-        // navigation.navigate('Home');
+        navigation.navigate('ListaEventosLocal');
       } catch (error) {
         console.log("DEU RUIM" + error);
       }

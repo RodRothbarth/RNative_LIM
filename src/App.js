@@ -21,6 +21,7 @@ import Login from './components/Login';
 import PaginaInicial from './components/PaginaInicial';
 import PerfilBanda from './components/PerfilBanda';
 import PerfilLocal from './components/PerfilLocal';
+import UpdateEvento from './components/UpdateEvento';
 
 const App = () => {
   // const [signed, setSigned] = useState(false);
@@ -116,7 +117,14 @@ const App = () => {
           />
           <Page.Screen 
             name='ListaEventosLocal' 
-            component={ListaEventosLocal} 
+            component={ListaEventosLocal}
+            options={
+            { headerShown:false
+            }}
+          />
+          <Page.Screen 
+            name='Update' 
+            component={UpdateEvento} 
             options={
             { headerShown:false
             }}
