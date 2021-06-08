@@ -11,7 +11,7 @@ const ListaBandas = ({navigation}) => {
   
   const getBandas = async () => {
     try {
-      const response = await api.get('/banda'); // trocar end point
+      const response = await api.get('/bandas'); // trocar end point
     console.log(JSON.stringify(response.data));
     setBanda(response.data);
     }catch (error) {

@@ -87,14 +87,14 @@ const AddEvento = ({navigation}) => {
 
     if (nomeEvento && dataEvento && mostrarHrInicioEvento && mostrarHoraFimEvento && valorEvento){
       try{
-        const response = await api.post('/Evento', {"nome": nomeEvento, "dtevento": dataEvento, "hrinicio": mostrarHrInicioEvento, "hrfim": mostrarHoraFimEvento, "valor": valorEvento});
+        const response = await api.post('/evento', {"nomedoevento": nomeEvento, "dtevento": dataEvento, "hrinicioevento": mostrarHrInicioEvento, "hrfimevento": mostrarHoraFimEvento, "valorevento": valorEvento});
         console.log(JSON.stringify(response.data));
         navigation.navigate('ListaEventosLocal');
       } catch (error) {
         console.log("DEU RUIM" + error);
       }
     } else {
-      console.log("Vazio")
+      console.warn("Todos os campos devem ser preenchidos")
     }
   }
 

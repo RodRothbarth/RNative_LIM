@@ -12,7 +12,7 @@ const ListaEstabelecimentos = () => {
   
   const getEventos = async () => {
     try {
-      const response = await api.get('/estabelecimento/:idlocal/eventos'); // trocar end point
+      const response = await api.get('/estabelecimentos'); // trocar end point
       console.log(JSON.stringify(response.data));
       setLocal(response.data);
     }catch (error) {
