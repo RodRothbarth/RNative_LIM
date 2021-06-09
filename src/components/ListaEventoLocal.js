@@ -17,7 +17,7 @@ const ListaEventosLocal = ({navigation}) => {
 
   const getEventos = async () => {
     try{
-      const response = await api.get('/eventos'); // mudar endpoint
+      const response = await api.get('/estabelecimento/:idlocal/eventos'); // mudar endpoint
       console.log(JSON.stringify(response.data));
       setEvento(response.data);
       console.log(eventos[0].idevento)
