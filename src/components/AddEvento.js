@@ -54,15 +54,16 @@ const AddEvento = ({navigation}) => {
     setMostrarHrInicioEvento(false);
   };
 
-  const handleTimeInicioConfirm = (timeinicio) => {
-    console.warn("Hórário de início: ", timeinicio);
+  const handleTimeInicioConfirm = (time) => {
+    console.warn("Hórário de início: ", time);
     hideTimeInicioPicker();
-    setHoraInicioEvento(parseHoraInicio(timeinicio));
-  };
-  const parseHoraInicio = (timeinicio) => {
-    return `${timeinicio.getHours().toString().padStart(2,0)}:${timeinicio.getMinutes().toString().padStart(2,0)}`;
-  }
+    // setMostrarHrInicioEvento(parseHoraInicio(timeinicio));
+    setHoraInicioEvento(time);
 
+  };
+  const parseHora = (time) => {
+    return time? `${time.getHours().toString().padStart(2,0)}:${time.getMinutes().toString().padStart(2,0)}` : "00:00";
+  }
     // Hora Final do Evento
 
   const showTimeFimPicker = () => {
@@ -73,23 +74,24 @@ const AddEvento = ({navigation}) => {
     setMostrarHoraFimEvento(false);
   };
 
-  const handleTimeFimConfirm = (timefim) => {
-    console.warn("Horário de término: ", timefim);
+  const handleTimeFimConfirm = (time) => {
+    console.warn("Horário de término: ", time);
     hideTimeFimPicker();
-    setHoraFimEvento(parseHoraFim(timefim));
+    setHoraFimEvento(time);
   };
-  const parseHoraFim = (timefim) => {
-    return `${timefim.getHours().toString().padStart(2,0)}:${timefim.getMinutes().toString().padStart(2,0)}`;
-  }
-
+ 
 
   const createEvento = async () => {
 
-    if (nomeEvento && dataEvento && mostrarHrInicioEvento && mostrarHoraFimEvento && valorEvento){
+    if (nomeEvento && dataEvento && horaInicioEvento && horaFimEvento && valorEvento){
+      
       try{
+        
         const response = await api.post('/evento', {"nomedoevento": nomeEvento, "dtevento": dataEvento, "hrinicioevento": mostrarHrInicioEvento, "hrfimevento": mostrarHoraFimEvento, "valorevento": valorEvento});
+        console.log(response)
         console.log(JSON.stringify(response.data));
-        navigation.navigate('ListaEventosLocal');
+        
+        // navigation.navigate('ListaEventosLocal');
       } catch (error) {
         console.log("DEU RUIM" + error);
       }
@@ -127,7 +129,7 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Inicial" value={horaInicioEvento} editable={false}></TextInput>
+            <TextInput style={styles.input} placeholder="Hora Inicial" value={parseHora(horaInicioEvento)} editable={false}></TextInput>
             <Icon style={styles.icon} name="clock" onPress={showTimeInicioPicker} size={30}></Icon>
 
             <DateTimePickerModal
@@ -140,7 +142,7 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Final" value={horaFimEvento} editable={false}></TextInput>
+            <TextInput style={styles.input} placeholder="Hora Final" value={parseHora(horaFimEvento)} editable={false}></TextInput>
             <Icon style={styles.icon} name="clock" onPress={showTimeFimPicker} size={30}></Icon>
             <DateTimePickerModal
               isVisible={mostrarHoraFimEvento}
@@ -159,14 +161,12 @@ const AddEvento = ({navigation}) => {
               precision: 2,
               separator: ',',
               delimiter: '.',
-              unit: 'R$',
               suffixUnit: ''
             }}
-            value={valorEvento.advanced}
+            value={valorEvento}
             onChangeText={text => {
-              setValorEvento({
-                advanced: text
-              })
+              setValorEvento( text
+            )
             }}
           />
           
@@ -217,13 +217,14 @@ const styles = StyleSheet.create({
 
   input: {
     height: 40,
-    width: 150,
+    width: 200,
     textAlign: 'center',
     color: '#000',
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
     borderRadius: 25,
+    marginLeft:40
   },
 
   inputNomeEvento: {
@@ -235,18 +236,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#fff',
     borderRadius: 25,
+    
   },
 
   inputValor: {
     height: 40,
-    width: 150,
+    width: 200,
     textAlign: 'center',
     color: '#000',
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
     borderRadius: 25,
-    marginRight: 40,
+    
   },
 
   icon: {
