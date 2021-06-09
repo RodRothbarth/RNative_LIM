@@ -57,7 +57,6 @@ const AddEvento = ({navigation}) => {
   const handleTimeInicioConfirm = (time) => {
     console.warn("Hórário de início: ", time);
     hideTimeInicioPicker();
-    // setMostrarHrInicioEvento(parseHoraInicio(timeinicio));
     setHoraInicioEvento(time);
 
   };
@@ -87,7 +86,7 @@ const AddEvento = ({navigation}) => {
       
       try{
         
-        const response = await api.post('/evento', {"nomedoevento": nomeEvento, "dtevento": dataEvento, "hrinicioevento": mostrarHrInicioEvento, "hrfimevento": mostrarHoraFimEvento, "valorevento": valorEvento});
+        const response = await api.post('/evento', {"nomedoevento": nomeEvento, "dtevento": dataEvento, "hrinicioevento": horaInicioEvento, "hrfimevento": horaFimEvento, "valorevento": valorEvento});
         console.log(response)
         console.log(JSON.stringify(response.data));
         
