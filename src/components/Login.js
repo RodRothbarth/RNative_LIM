@@ -35,7 +35,7 @@ const Login = ({navigation}) => {
 
       {/* <Text style={styles.title}>Cadastro</Text> */}
 
-      <TextInput placeholder="Nome" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setNome(text)}/>
+      <TextInput placeholder="Nome" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/>
       {/* <TextInput placeholder="Seu Email" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/> */}
       <TextInput secureTextEntry={true} placeholder="Senha" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setSenha(text)}/>
 
@@ -43,10 +43,11 @@ const Login = ({navigation}) => {
         <Text style={styles.textButton}>LOGIN</Text>
       </TouchableOpacity>
 
-      {/* <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilBanda')}>
+     <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilBanda')}>
         <Text style={styles.textButton}>LOGIN BANDA</Text>
       </TouchableOpacity>
-
+      
+    {/* 
       <Text></Text>
       Criado somente para acessar as páginas como Dono de Local
       <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilLocal')}>
