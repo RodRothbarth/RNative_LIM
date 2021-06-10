@@ -109,7 +109,10 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
       
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Data" value={dataEvento} onPressIn={showDatePicker}></TextInput>
+            <TouchableOpacity onPressIn={showDatePicker}>
+              <TextInput style={styles.input} placeholder="Data" value={dataEvento} editable={false}></TextInput>
+            </TouchableOpacity>
+            
             <Icon style={styles.icon} name="calendar-alt" onPress={showDatePicker} size={30}></Icon>
 
             <DateTimePickerModal
@@ -122,8 +125,11 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Inicial" value={parseHora(horaInicioEvento)} onPressIn={showTimeInicioPicker}></TextInput>
-            <Icon style={styles.icon} name="clock" onPress={showTimeInicioPicker} size={30}></Icon>
+            <TouchableOpacity onPressIn={showTimeInicioPicker}>
+              <TextInput style={styles.input} placeholder="Hora Inicial" value={parseHora(horaInicioEvento)} editable={false}></TextInput>
+            </TouchableOpacity>
+
+              <Icon style={styles.icon} name="clock" onPress={showTimeInicioPicker} size={30}></Icon>
 
             <DateTimePickerModal
               isVisible={mostrarHrInicioEvento}
@@ -135,8 +141,12 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Final" value={parseHora(horaFimEvento)} onPressIn={showTimeFimPicker}></TextInput>
+            <TouchableOpacity onPressIn={showDatePicker}>
+              <TextInput style={styles.input} placeholder="Hora Final" value={parseHora(horaFimEvento)} editable={false}></TextInput>
+            </TouchableOpacity>
+            
             <Icon style={styles.icon} name="clock" onPress={showTimeFimPicker} size={30}></Icon>
+
             <DateTimePickerModal
               isVisible={mostrarHoraFimEvento}
               mode="time"
