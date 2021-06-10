@@ -10,7 +10,7 @@ const Login = ({navigation}) => {
   const {perfil, LogIn} = useContext(AuthContext)
 
   async function toLogIn(){
-    LogIn();
+    LogIn(email, senha);
   }
 
   return (

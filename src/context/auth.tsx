@@ -35,8 +35,9 @@ export const AuthProvider = ({children}) => {
 
         }, []);
     
-    async function LogIn(){
-       const response = await api.get('/usuario');
+    async function LogIn(email, senha){
+        const body = {email, senha}
+       const response = await api.post('/usuario', body);
         console.log(response)
 
        const { perfil } = response;
