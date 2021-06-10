@@ -7,24 +7,10 @@ const Login = ({navigation}) => {
   const [email, setEmail] = useState(null);
   const [senha, setSenha] = useState(null);
 
-  // const dados = {
-  //   email: email,
-  //   senha: senha
-  // }
+  const {perfil, LogIn} = useContext(AuthContext)
 
-  useEffect (()=> {getUsuarios()}, []);
-
-  const getUsuarios = async () => {
-    try{
-      const response = await api.get('/usuario'); // mudar endpoint
-      console.log(JSON.stringify(response.data));
-      setEmail(response.data);
-      setSenha(response.data);
-      console.log(email[0].idusuario)
-      console.log(senha[0].idusuario)
-    }catch (error) {
-      console.log("DEU RUIM" + error);
-    }
+  async function toLogIn(){
+    LogIn();
   }
 
   return (
@@ -33,26 +19,12 @@ const Login = ({navigation}) => {
 
       <Image style={styles.img} source={require('../assets/logo-let-it-music-white.png')} />
 
-      {/* <Text style={styles.title}>Cadastro</Text> */}
-
       <TextInput placeholder="Nome" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/>
-      {/* <TextInput placeholder="Seu Email" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setEmail(text)}/> */}
       <TextInput secureTextEntry={true} placeholder="Senha" placeholderTextColor="#fff" style={styles.input} onChangeText={text=>setSenha(text)}/>
 
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilLocal')}>
+      <TouchableOpacity style={styles.button} onPress={toLogIn()}>
         <Text style={styles.textButton}>LOGIN</Text>
       </TouchableOpacity>
-
-     <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilBanda')}>
-        <Text style={styles.textButton}>LOGIN BANDA</Text>
-      </TouchableOpacity>
-      
-    {/* 
-      <Text></Text>
-      Criado somente para acessar as páginas como Dono de Local
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('PerfilLocal')}>
-        <Text style={styles.textButton}>LOGIN ESTABELECIMENTO</Text>
-      </TouchableOpacity> */}
     </View>
   );
 }

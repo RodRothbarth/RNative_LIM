@@ -1,14 +1,23 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
-import AuthContext from '../contexts/auth'
-import AppRoutes from './app.routes';
+import {useAuth} from '../context/auth'
 
-import AuthRoutes from './auth.routes';
-// import AppRoutes from './approutes';
+import BandaRoutes from './banda.routes';
+import LocalRoutes from './local.routes'
+import LoginRoutes from './SignIn.routes';
+
 
 const Routes = () => {
-  const {signed} = useContext(AuthContext);
-  return signed ? <AppRoutes /> : <AuthRoutes />;
-};
+    const { perfil } = useAuth(); 
+
+    if( perfil.perfil == 'banda'){
+        return ( <BandaRoutes />)
+    }else if(perfil.perfil == 'estabalecimento'){
+        return (<LocalRoutes />)
+    }else{
+        return (<LoginRoutes/>)
+    }    
+        
+}
 
 export default Routes;
