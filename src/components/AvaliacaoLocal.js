@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, StatusBar } from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 
 const initialRegion = {
   latitude: -27.60281603785831,
@@ -29,23 +31,28 @@ const AvaliacaoLocal = () => {
 
         <View style={styles.containerAvaliacao}>
             <TouchableOpacity style={styles.aroundNota}>
-                <Text style={styles.nota}>{notaUm}</Text>
+            <Icon name="star" style={styles.iconTrash} size={20} color="#ffff00" />
+                {/* <Text style={styles.nota}>{notaUm}</Text> */}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.aroundNota}>
-                <Text style={styles.nota}>{notaDois}</Text>
+            <Icon name="star" style={styles.iconTrash} size={20} color="#ffff00" />
+                {/* <Text style={styles.nota}>{notaDois}</Text> */}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.aroundNota}>
-                <Text style={styles.nota}>{notaTres}</Text>
+            <Icon name="star" style={styles.iconTrash} size={20} color="#ffff00" />
+                {/* <Text style={styles.nota}>{notaTres}</Text> */}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.aroundNota}>
-                <Text style={styles.nota}>{notaQuatro}</Text>
+            <Icon name="star" style={styles.iconTrash} size={20} color="#ffff00" />
+                {/* <Text style={styles.nota}>{notaQuatro}</Text> */}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.aroundNota}>
-                <Text style={styles.nota}>{notaCinco}</Text>
+            <Icon name="star" style={styles.iconTrash} size={20} color="#ffff00" />
+                {/* <Text style={styles.nota}>{notaCinco}</Text> */}
             </TouchableOpacity>
         </View>
         
@@ -95,15 +102,15 @@ const styles = StyleSheet.create({
     padding : 25,
     borderRadius : 10
   },
-  aroundNota : {
-    textAlign: 'center',
-    backgroundColor: '#0ac5a8',
-    width : 45,
-    height : 45,
-    borderRadius : 50,
-    alignItems : 'center',
-    justifyContent : 'center'
-  },
+  // aroundNota : {
+  //   textAlign: 'center',
+  //   backgroundColor: '#0ac5a8',
+  //   width : 45,
+  //   height : 45,
+  //   borderRadius : 50,
+  //   alignItems : 'center',
+  //   justifyContent : 'center'
+  // },
   nota : {
     padding : 10,
     color : '#000',
