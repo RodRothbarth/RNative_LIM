@@ -104,18 +104,12 @@ const AddEvento = ({navigation}) => {
       <ImageBackground source={require('../assets/evento.jpg')} style={styles.image}>
         <View style={styles.container}>
           <Text style={styles.header}>Crie seu Evento</Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
 
           <TextInput placeholder="Nome do Evento" style={styles.inputNomeEvento} value={nomeEvento} onChangeText={item => {setNomeEvento(item)}} />
           <Text></Text>
       
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Data" value={dataEvento} editable={false}></TextInput>
+            <TextInput style={styles.input} placeholder="Data" value={dataEvento} onPressIn={showDatePicker}></TextInput>
             <Icon style={styles.icon} name="calendar-alt" onPress={showDatePicker} size={30}></Icon>
 
             <DateTimePickerModal
@@ -128,7 +122,7 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Inicial" value={parseHora(horaInicioEvento)} editable={false}></TextInput>
+            <TextInput style={styles.input} placeholder="Hora Inicial" value={parseHora(horaInicioEvento)} onPressIn={showTimeInicioPicker}></TextInput>
             <Icon style={styles.icon} name="clock" onPress={showTimeInicioPicker} size={30}></Icon>
 
             <DateTimePickerModal
@@ -141,7 +135,7 @@ const AddEvento = ({navigation}) => {
           <Text></Text>
 
           <View style={styles.ladoalado}>
-            <TextInput style={styles.input} placeholder="Hora Final" value={parseHora(horaFimEvento)} editable={false}></TextInput>
+            <TextInput style={styles.input} placeholder="Hora Final" value={parseHora(horaFimEvento)} onPressIn={showTimeFimPicker}></TextInput>
             <Icon style={styles.icon} name="clock" onPress={showTimeFimPicker} size={30}></Icon>
             <DateTimePickerModal
               isVisible={mostrarHoraFimEvento}
@@ -168,15 +162,6 @@ const AddEvento = ({navigation}) => {
             )
             }}
           />
-          
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
           
           <View>
             <TouchableOpacity style={styles.button} onPress={createEvento}>
@@ -206,7 +191,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 25,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 110
   },
 
   image:{
@@ -265,7 +251,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 100
   },
 })
 

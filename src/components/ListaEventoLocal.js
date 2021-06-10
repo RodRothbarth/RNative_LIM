@@ -5,12 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import api from '../services/axios';
 
 const ListaEventosLocal = ({navigation}) => {
-
-  // const [nomeEvento, setNomeEvento] = useState('Night-bar');
-  // const [dataEvento, setDataEvento] = useState('04/06/2021');
-  // const [hrInicioEvento, setHrInicioEvento] = useState('20:00');
-  // const [hrFimEvento, setHrFimEvento] = useState('00:00');
-  // const [valorEvento, setValorEvento] = useState('20.00');
+  
   const [eventos, setEvento] = useState([]);
 
   useEffect (()=> {getEventos()}, []);

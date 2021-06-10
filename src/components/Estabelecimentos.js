@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, StatusBar, FlatList } from 'react-native';
 import api from '../services/axios';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
-const ListaEstabelecimentos = () => {
+const ListaEstabelecimentos = ({navigation}) => {
 
   const [local, setLocal] = useState([])
 
@@ -29,25 +30,28 @@ const ListaEstabelecimentos = () => {
       <FlatList
         data={local}
         keyExtractor={(item)=> item.idestabelecimento}
+        showsVerticalScrollIndicator ={false}
         renderItem={({item}) => {
           return (
             <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('AvaliacaoLocal')}>
 
               <View style={styles.eventoContainer}>
-  
-                <Text>{item.razaosocial}</Text>                      
-                <Text>{item.cnpj}</Text>                                                               
-                <Text>{item.logradouro}</Text>                                           
-                <Text>{item.numero}</Text>                                          
-                <Text>{item.bairro}</Text>                                            
-                <Text>{item.cep}</Text>                                           
-                <Text>{item.cidade}</Text>                                          
-                <Text>{item.pontodereferencia}</Text>                                            
-                <Text>{item.numero}</Text>                                            
-                <Text>{item.generobar}</Text>                                                 
-                <Text>{item.avalestabelecimento}</Text>
-                <Text>{item.uf}</Text>
+                <View style={styles.cabecalho}>
+                  <Text style={styles.title}>{item.razsocial}</Text>
+                  <Text style={styles.small}> <Icon name="star" style={styles.iconTrash} size={20} color="#ffff00" />{item.avalestabelecimento}</Text>  
+                </View>
+
+                <Text style={styles.small}><Text style={styles.label}>Gênero:</Text> {item.generobar}</Text>        
                   
+                <Text style={styles.small}>
+                  <Text style={styles.label}>CNPJ:</Text> {item.cnpj}
+                </Text>  
+
+                <Text style={styles.small}><Text style={styles.label}>Endereço:</Text> {item.logradouro}, {item.numero} - {item.pontodereferencia} {item.bairro} {item.cidade} - {item.uf}, {item.cep}</Text>   
+
+                <Text style={styles.avaliacao}>
+                  <Text style={styles.avalie}>Avalie o estabelecimento </Text> <Icon style={styles.icon} name="chevron-right" size={15} color="#fff"></Icon> 
+                </Text>  
               </View>
 
             </TouchableOpacity>
@@ -73,15 +77,40 @@ const styles = StyleSheet.create({
     marginBottom : 30,
   },
   button: {
-    width: 350,
-    marginVertical: 20,
-    height: 50,
+    width: '100%',
+    marginVertical: 10,
     backgroundColor: '#0ac5a8',
-    padding: 5,
-    borderRadius: 25,
+    padding: 20,
     alignContent: 'center',
-    alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
+  cabecalho: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },  
+  title: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  small : {
+    fontSize: 15,
+    marginBottom: 5
+  },
+  label: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  avaliacao : {
+    textAlign: 'right',
+    marginTop: 10
+  },
+  avalie : {
+    color: '#fff',
+    fontWeight: 'normal',
+    fontSize: 18
+  }
 });
 export default ListaEstabelecimentos;
