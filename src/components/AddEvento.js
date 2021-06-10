@@ -36,7 +36,7 @@ const AddEvento = ({navigation}) => {
   };
 
   const handleDateConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
+    // console.warn("A date has been picked: ", date);
     hideDatePicker();
     setDataEvento(parseDate(date));
   };
@@ -55,7 +55,7 @@ const AddEvento = ({navigation}) => {
   };
 
   const handleTimeInicioConfirm = (time) => {
-    console.warn("Hórário de início: ", time);
+    // console.warn("Hórário de início: ", time);
     hideTimeInicioPicker();
     setHoraInicioEvento(time);
 
@@ -74,7 +74,7 @@ const AddEvento = ({navigation}) => {
   };
 
   const handleTimeFimConfirm = (time) => {
-    console.warn("Horário de término: ", time);
+    // console.warn("Horário de término: ", time);
     hideTimeFimPicker();
     setHoraFimEvento(time);
   };
